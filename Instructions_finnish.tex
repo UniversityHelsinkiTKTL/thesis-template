@@ -1,0 +1,237 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Document metadata is needed for tagging and producing 
+%% accessible pdf
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DocumentMetadata{
+  lang        = fi,
+  pdfstandard = ua-2,
+  pdfstandard = a-4f,
+  tagging=on,
+  tagging-setup={math/setup=mathml-SE}
+}
+
+\documentclass[finnish, manual, a4paper]{csthesis}
+
+%%%%%%%%%%%%%%% Some useful packages %%%%%%%%%%%%%%%%%%%%
+\usepackage{amsthm,amsmath} % For better math
+\usepackage{booktabs} % For prettier tables
+% See package documentation for more information
+
+%%%%%%%%%% Bibliography style and file %%%%%%%%%%%%%%%%%%%
+\usepackage[backend=biber,style=apa,doi=true,url=true,%
+            urldate=short,labeldate=year,%
+            datezeros=false]{biblatex}
+%% The template default bibliography file; add/modify 
+%% to match your bibliography file
+\addbibresource{bibliography.bib}
+
+
+\supervisors{}
+\keywords{\LaTeX{} mallipohja, kandidaatintutkielma, tekstin tuottaminen, saavutettavuus}
+\additionalinformation{}
+\classification{\protect{\ \\
+\  General and reference \textrightarrow\ 
+Document types \textrightarrow\ Surveys and overviews\  \\
+\  Applied computing \textrightarrow\ 
+Document management and text processing \textrightarrow\ 
+Document management \textrightarrow\ Text editing
+}}
+
+
+\begin{document}
+
+\title{Tutkielmapohjan käyttöohjeet V-1.0}
+\author{Emilia Oikarinen}
+\thispagestyle{empty}
+\maketitle
+
+\csabstract{
+Tämä dokumentti opastaa Helsingin yliopiston tutkielmamallipohjan käyttöönotossa. Lisäksi teksti ja sen lähdekoodi sisältävät vinkkejä \LaTeX{}illa kirjoittamiseen. Lopuksi annetaan ohjeet saavutettavan pdf-tiedoston tuottamiseen.
+}
+
+%% Formatting, do not modify
+\cleardoublepage
+\pagenumbering{gobble}
+\tableofcontents
+\cleardoublepage
+\pagenumbering{arabic}
+
+\chapter{Tutkielmapohjan käyttöohjeet}
+\label{appendix:instructions_finnish}
+
+Tässä dokumentissa on ohjeistettu, kuinka teet tutkielmasi mallipohjaa hyödyntäen ja varmistat samalla tuotetun pdf-tiedoston saavutettavuuden. Huomaa, että mallipohjan koodin kommentteihin (prefiksoitu \%-merkillä) on upotettu seikkaperäiset ohjeet käyttöönottoa varten, joten tutustu lähdekoodiin.
+
+\section{Mallipohjan käyttöönotto}
+
+\paragraph{Vaihe 1: Kopioi tutkielmapohja}
+Suositeltu tapa on kopioida tutkielmapohja uudeksi Overleaf-projektiksi. Tämä käy helpoiten seuraavasti:
+\begin{itemize}
+%    \item Lataa Latex-pohjan zip-tiedosto koulutusohjelman sivuilta.
+    \item Mene osoitteeseen \href{http://www.overleaf.com/edu/helsinki}{www.overleaf.com/edu/helsinki} ja kirjaudu Overleafiin yli\-opiston tunnuksillasi.
+    \item Kopioi tutkielmapohja kandiseminaarin Moodleen linkitetystä osoitteesta\footnote{Tämä varmistaa, että otat käyttöön ajantasaisen version. } (\href{https://docs.overleaf.com/managing-projects-and-files/copying-a-project}{ohjeet projektin kopioimiseen})
+    \item Tämän jälkeen voit aloittaa mallipohjaan tutustumisen ja käyttöönoton, aluksi kannattaa vaihtaa projektin nimi esim. muotoon "Sukunimi-Etunimi".
+    \item {\bf Huom!} Mallipohja on suunniteltu käytettäväksi LuaLaTeX-kääntäjällä ja Tex Live -versiolla 2025. Varmista, että oikea kääntäjä on asetettu Overleafin valikosta File $\rightarrow$ Settings $\rightarrow$ Compiler. 
+\end{itemize}
+Vaihtoehtoinen tapa paikallista \LaTeX-asennusta käyttäville on ladata mallipohja zip-tiedostona Overleafista ja purkaa paketti haluttuun hakemistoon. Tässä tapauksessa kannattaa varmistaa, että mallipohja kääntyy ongelmitta. 
+On suositeltavaa käyttää vuoden 2025 LaTeX-julkaisua (LaTeX 2025-11-01 tai uudempi) LuaLaTeXin kanssa.
+
+\paragraph{Vaihe 2: valitse koulutusohjelma ja tutkielman kieli}
+Määritä ensin metadatassa (tiedoston \texttt{HY-CS-main.tex} alussa komennossa
+\texttt{\textbackslash DocumentMetadata}) dokumenttisi kieli asettamalla \texttt{lang}-kentän arvoksi \texttt{fi}, \texttt{sv} tai \texttt{en}.  
+
+Jatka valitsemalla komennolle \texttt{\textbackslash documentclass} sopivat optiot kielelle ja koulutusohjelmalle. Koulutusohjelmasi määrää oletko tekemässä kandidaatintutkielmaa ja maisterintutkielmaa. 
+Mallipohja tukee seuraavia koulutusohjelmia: 
+\begin{itemize}
+\item Tietojenkäsittelytieteen kandiohjelma (\texttt{tkt}), 
+\item Matemaattisten tieteiden kandiohjelma (\texttt{math}) ja
+\item Bachelor's Programme in Science (\texttt{science}).
+\end{itemize}
+Valitse myös tutkielman kieltä vastaava optio: \texttt{finnish}, \texttt{english} tai \texttt{swedish}. 
+
+\paragraph{Vaihe 3: Määritä henkilökohtaiset tiedot, avainsanat ja tiivistelmä}
+Aseta sopivat (alustavat) tiedot seuraaviin komentoihin (todennäköisesti palaat päivittämään ja täydentämään näitä tutkielmaprosessin aikana):
+\begin{itemize}
+\item Tutkielman otsikko: \texttt{\textbackslash title\{\}}
+\item Kirjoittajan nimi (paritutkielman tapauksessa molempien kirjoittajien nimet erotettuna sanalla 'ja'): \texttt{\textbackslash author\{\}}
+\item Ohjaajan (tai ohjaajien) nimi ja akateeminen arvo: \texttt{\textbackslash supervisors\{\}}
+\item Avainsanat: \texttt{\textbackslash keywords\{\}}
+\item Tutkielman ACM luokittelutermit:\texttt{\textbackslash classification\{\}} (\href{https://dl.acm.org/ccs}{lisätietoa luokittelusta})
+\item Tiivistelmä: \texttt{\textbackslash csabstract\{\}} \\(kandidaatintutkielmassa tiivistelmän kieli on tutkielman kieli; jos tarvitset tutkielmaasi tiivistelmän muulla kielellä, katso luvusta \ref{app:latexvinkit} miten saat asetettua osan kielen muuksi kuin dokumentin kieleksi) 
+\end{itemize}
+
+\paragraph{Vaihe 4: Kirjoita tutkielma}
+Enää on jäljellä varsinainen työ, eli tutkielman kirjoittaminen. 
+Seuraavissa luvuissa on muutamia \LaTeX{}in käyttöön liittyviä käytännön vinkkejä ja ohjeistus saavutettavan pdf-tiedoston tuottamiseen. Tutkielmaprosessia ja tieteellisen tekstin tuottamista \LaTeX{}illa käsitellään laajemmin mm. kandiseminaarin oppimateriaaleissa \parencite{tieteellinenkirjoittaminen}.
+
+Mallipohjassa on asetettu vakiomuotoiset otsikot luvuille {\em Johdanto}, {\em Johtopäätökset} ja {\em Tekoälyn käyttö tutkielmassa}. Älä muokkaa näitä. 
+
+\paragraph{Pakolliset osiot kanditutkielmassa}
+Jokaisesta kanditutkielmasta on löydyttävä {\em Johto\-pää\-tök\-set}-luvun (numeroimattomana) alilukuna kuvaus tekoälyn käytöstä tutkielman teossa,
+(kts. tiedostosta \texttt{Ch.40\_Conclusions.tex}). 
+
+Jos tutkielma kirjoitetaan parin kanssa (paritutkielma), tarvitaan lisäksi aliluku, jossa kuvataan kirjoittajien työnjako (kts. tiedostosta \texttt{Ch.40\_Conclusions.tex}). Yksilötutkielmissa tätä osuutta ei tarvita.
+
+Lopuksi pienen joukon on liitettävä tutkielmaan vielä koulusivistyskielinen lyhennelmä. Tämä vaatii kaikkien seuraavien ehtojen toteutumisen:
+\begin{enumerate}
+    \item Opiskelijan koulutusohjelma on tietojenkäsittelytieteen kandiohjelma tai matemaattisten tieteiden kandiohjelma.
+    \item Opiskelija opiskelee 2023--2026 opetussuunnitelman mukaisesti.
+    \item Opiskelijan koulusivistyskieli on suomi tai ruotsi.
+    \item Tutkielman kieli on muu kuin koulusivistyskieli.
+\end{enumerate}
+Jos ylläolevat ehdot toteutuvat, tutustu tiedostoon \texttt{Ch.01\_ExtendedAbstract.tex} ja sen ohjeistukseen. Suurimmalla osalla opiskelijoista erillistä koulusivistyskielistä lyhennelmää ei vaadita. Lyhennelmä lisätään tiivistelmäsivun jälkeen, ennen sisällysluetteloa. 
+
+\section{Vinkkejä LaTeXilla kirjoittamiseen}\label{app:latexvinkit}
+
+Yksityiskohtaisia ohjeita \LaTeX{}in käyttämisestä saa parhaiten verkkohaulla (myös tekoälytyökaluja voi hyvin hyödyntää\footnote{Tekoälytyökalut eivät aina anna toimivia vinkkejä, mm. tätä mallipohjaa koodatessa Copilot hyvin sujuvasti keksi olemattomia LaTeX-komentoja ja tarjosi toimimatonta koodia.}), esim. haku  "Overleaf table positioning"\ tuottaa todennäköisesti varsin toimivan vastauksen. Overleafissa on erittäin kattavat \href{https://www.overleaf.com/learn}{ohjesivut}, joihin kannattaa tutustua.
+
+\paragraph{Toisen kielen määritteleminen johonkin tutkielman osaan}
+Jos tarvitset tutkielmaasi tiivistelmän tai jonkun muun osan muulla kielellä kuin tutkielman kielellä, saat asetettua osan kielen \texttt{otherlanguage}-ym\-pä\-ris\-tön avulla (tämä määrittää mm. tavutuksen oikein). Alla esimerkki ympäristön käytöstä: 
+
+\begin{verbatim}
+\begin{otherlanguage}{english} 
+Your text in English goes here. 
+\end{otherlanguage}
+Tämän jälkeen teksti jatkuu suomeksi.
+\end{verbatim}
+
+\paragraph{Lähdeluettelon tyyli}
+Oletustyylinä mallipohjassa on tekijä-vuosi tyylin mukaiset viittaukset (tarkemmin sanottuna APA-tyyli), esim. \parencite{einstein}. Kandidtutkielmissa tämä on ainoa sallittu vaihtoehto.
+
+\paragraph{Lähdeviitteet \LaTeX{}issa}
+
+Lähdemateriaalien tiedot säilytetään erillisessä .bib-päättei\-ses\-sä tekstitiedostossa. Tässä mallipohjassa käy\-te\-tyt lähteet löytyvät tiedostosta nimeltä \texttt{bibliography.bib}.
+
+APA-tyyliä käyttäessä viittaukset kirjallisuuslähteisiin muodostetaan perusmuotoisesti komennolla \texttt{\textbackslash parencite\{einstein\}}, josta tekstiin generoituu avainta \texttt{einstein} vastaava valitun viittaustyylin mukaisesti muotoiltu viite \parencite{einstein} (katso lähdeluettelosta, miltä viite näyttää). Vastaavasti komennolla \texttt{\textbackslash parencite\{latexcompanion,knuth99\}},  tekstiin generoituu \parencite{latexcompanion,knuth99} (useampaan lähteeseen viittaminen samalla kertaa). 
+
+Viittauskomentoja on useita ja niiden tietämisestä on hyötyä etenkin tekijä-vuosi -tyyppi\-sis\-sä viittaustyyleissä, kuten APA. Voit esimerkiksi kertoa mitä \textcite{einstein} keksi käyttäen julkaisun  \parencite{einstein} kirjoittajaa \citeauthor{einstein} ja julkaisuvuotta \citeyear{einstein}, kunhan vain lähde avaimella \texttt{einstein} on oikein lisättynä bib-tiedostoon (katso miltä nämä näyttävät \LaTeX{}-lähde\-koo\-dis\-sa). Eri viittauskomentoja on listattu esim. \href{https://tug.ctan.org/info/biblatex-cheatsheet/biblatex-cheatsheet.pdf}{Bib\LaTeX\ cheatsheet}-tiivis\-tel\-mään.
+
+Tekstissä viitatut (ja vain tekstissä viitatut) lähdemateriaalit tulevat automaattisesti lähdeluetteloon. Ei siis haittaa, jos bib-tiedostossa on ylimääräisiä tietoja. Lähteiden bibliografisten tietojen oikeellisuus ja yhdenmukaisuus .bib-tiedostossa vaikuttavat siihen, miten tiedot tutkielmassa näyttäytyvät. Tämä on tärkeää huomioida, sillä esim.\ verkosta valmiiksi {Bib\TeX} muodossa löytyvien tietojen täydellisyyten tai samanmuotoisuuteen ei voi luottaa. On kirjoittajan vastuulla varmistaa viitteiden yhtenäinen tyyli, myös siinäkin tapauksessa, jos käyttää jotain viitteidenhallintaohjelmistoa. 
+
+Tiedostosta \texttt{bibliography.bib} löydät esimerkkejä seuraavista yleisimmistä bib-tietue\-tyypeistä (katso tiedostosta, miten eri kentät esitetään; huomaa myös että kaikki kentät eivät tulostu lähdeluetteloon)\footnote{Vinkki: tämän dokumentin koodista löydät esimerkit kolmesta erilaisesta listaympäristöstä (\texttt{itemize}, \texttt{enumerate} ja \texttt{description}).}:
+\begin{description}
+    \item[\texttt{@book}:] kirja, esim.  \parencite{deep-learning-book,latexcompanion,knuth99}
+    \item[\texttt{@article}:] lehtiartikkeli, esim.  \parencite{JanzenS05,einstein}
+    \item[\texttt{@inproceedings}:] artikkeli  konferenssijulkaisussa, esim. \parencite{HiltonTHMD16}
+    \item[\texttt{@online}:] verkkomateriaali, esim. \parencite{knuthwebsite}
+    \item[\texttt{@misc}:] muuhun kategoriaan kuulumaton materiaali, esim. \parencite{tieteellinenkirjoittaminen}
+\end{description}
+
+
+
+\paragraph{Kuvat}
+Kuva~\ref{fig:logo-fi} toimii esimerkkinä kuvan lisäämisestä työhön (katso tarkemmin mallia \LaTeX-lähdekoodista). Jokaisella kuvalla pitää olla kuvateksti (caption). Muista myös viitata jokaiseen kuvaan tekstissä. Saavutettavuuden varmistamiseksi (kts. lisää luvusta \ref{appendix:saavutettavuus}) jokainen kuva tarvitsee myös alt-tekstin (katso \LaTeX-lähdekoodista miten se lisätään). Näkövammainen tekstisi lukija ei välttämättä pysty hahmottamaan kuvaasi katselemalla sitä. Mikäli hän käyttää ruudunlukuohjelmaa, joka lukee tekstisi ääneen tai toisintaa sen pistekirjoituksena, hänelle luetaan tai esitetään pistekirjoituksena alt-teksti kuvan sijaan. Esimerkiksi \href{https://accessibility.huit.harvard.edu/describe-content-images}{Harvardin yliopiston ohje} sisältää vinkkejä hyvän alt-tekstin kirjoittamisenn.
+
+\begin{figure}[t] % placement options t,b,h
+\centering 
+\includegraphics[alt={Helsingin yliopiston liekkimerkki Matemaattis-luonnontieteellisen tiedekunnan väreissä eli oranssina.}, width=0.3\textwidth]{template/figures/flame.png}
+\caption{Helsingin yliopiston logo Matemaattis-luonnontieteellisen tiedekunnan värein.\label{fig:logo-fi}}
+\end{figure}
+
+\paragraph{Taulukot}
+
+Taulukossa~\ref{table:results-fi} on esimerkki kokeellisten tulosten raportoinnista taulukkona. Muista myös viitata jokaiseen taulukkoon tekstissä. Mallipohjassa on käytössä \texttt{booktabs}-paketti ja lisää tietoa löydät paketista ja taulukkojen muotoilusta löydät \href{https://ctan.org/pkg/booktabs}{booktabs-paketin dokumentaatiosta}.
+%
+Taulukoiden saavutettavuutta voi parantaa suunnittelemalla mahdollisimman selkeän rakenteen. Näytönlukijoilla on vaikeuksia esim. jos taulukko sisältää usealle riville jakautuvaa, mutta visuaalisen esityksen perustella selkeästi yhteen kuuluvaa tietoa. Saavutettavuuden varmistamiseksi kerro myös mitkä taulukkosi rivit/sarakkeet ovat otsakerivejä (katso taulukon \ref{table:results-fi} \LaTeX-lähdekoodista yksinkertainen esimerkki siitä, miten tieto lisätään).
+
+\tagpdfsetup{table/header-rows={1}} 
+\tagpdfsetup{table/header-columns={1}}
+%% if two first rows/columns were header rows, then {1,2} etc.
+\begin{table}[b] % placement options t,b,h
+\centering
+\caption{Kokeelliset tulokset. Kullekin koeasetelmalle $A$, $B$ ja $A+B$ raportoidaan kolmen erillisen vaiheen ajoaika sekunteina. \label{table:results-fi}}
+\begin{tabular}{l r r r} \toprule
+Koeasetelma & Vaihe 1 & Vaihe 2 & Vaihe 3 \\ 
+\midrule 
+$A$ & 2.5 & 4.7 & 11.4 \\
+$B$ & 8.0 & 3.7 & 12.6 \\
+$A+B$ & 10.5 & 1.0 & 1.6 \\\bottomrule
+%
+\end{tabular}
+\end{table}
+
+\section{Saavutettavuus}
+\label{appendix:saavutettavuus}
+
+Euroopan unionin direktiivi verkkosivustojen ja mobiilisovellusten saavutettavuudesta (direktiivi (EU) 2016/2102) velvoittaa, että julkisella verkkosivustolla olevan aineiston tulee olla saavutettavaa. Tämä koskee myös tutkielmatiedostoja, koska opinnäytetyöt ovat julkisia (laki viranomaisten toiminnan julkisuudesta, 21.5.1999/621). Pdf-tiedoston saavutettavuudella tarkoitetaan sitä, että tiedoston toiminnassa otetaan huomioon käyttäjien mahdolliset toimintarajoitukset ja huomioidaan esimerkiksi ruudunlukuohjelmien käyttö. Tämä mallipohja on pyritty laatimaan siten, että siitä syntyvät pdf-dokumentit olisivat mahdollisimman saavutettavia. Konkreettisesti tämä tarkoittaa, että ne sisältävät sen rakenteisen tiedon, jota näkövammaisen lukijan käyttämät ohjelmistot tarvitsevat esittääkseen dokumentin puheena tai pistekirjoituksena. Kannattaa huomata, että saavutettavuus on paljon muutakin kuin dokumentin rakenteisen tiedon hyödyntämistä, joten on suurelta osin tutkielmantekijän vastuulla varmistaa työnsä saavutettavuus.
+
+Vaikka \LaTeX{}-tiedostot sisältävät paljon rakenteista tietoa, eivät \LaTeX{}illa tuotetut pdf-tiedostot ole lähtökohtaisesti saavutettavia. Tätä ongelmaa on ratkottu viime vuosina \href{https://latex3.github.io/tagging-project/}{\LaTeX Tagging -projektissa}
+ja maaliskuussa 2026 PDF Association julkaisi \href{https://pdfa.org/accessible-math-in-pdf-finally/}{tiedotteen}, että LaTeXilla on mahdollista tuottaa saavutettavia pdf-tiedostoja, jotka sisältävät myös matemaattista notaatiota ja kaavoja.
+ Kannattaa tutustua\LaTeX{}-rakenteistamis\-pro\-jektin 
+\href{https://latex3.github.io/tagging-project/documentation/}{dokumentaatio-osiosta} löytyviin \href{https://latex3.github.io/tagging-project/documentation/usage-instructions}{ohjeisiin}, lisäksi kiinnostuneilla on tarjolla \href{https://latex3.github.io/tagging-project/documentation/wtpdf/fulldoc}{laajempi opas}. 
+
+
+Tämän mallipohjan saavutettavuutta on tutkittu NVDA-näytönlukijalla Windows-ym\-pä\-ris\-tössä Acrobat Reader pdf-lukijaa käyttäen (\href{https://helpdesk.it.helsinki.fi/help/20057}{ohje saavutettavuustestauksesta ruudunlukijoilla}). NVDA tarvitsee matemaattisten kaavojen lukemiseen lisäosaa. Mallipohjan testauksessa tähän käytettiin \href{https://addons.nvda-project.org/addons/MathCAT.en.html}{MathCAT-laajennusta}.
+
+Pdf-tiedostojen saavutettavuudesta löytyy ohjeita myös  \href{https://www.saavutettavasti.fi/saavutettavat-asiakirjat/pdf/}{saavutettavasti.fi-sivustolla} ja \href{https://pdfa.org/accessible-math-in-pdf-finally/}{PDF Associationin tiedotteesta}. Overleafin ohje saavutettavuudesta.
+
+Tämä mallipohja on varmistettu PDF/UA-2, PDF/A-4f\footnote{Huomaa, että mallipohjan väriprofiili on asetettu RGB:ksi ja PDF/A-4f standardi rikkoutuu, jos lisäät tutkielmaasi CYMK-väriprofiililla tuotettuja kuvia.}, ISO 32005 ja WTPDF 1.0
+standardien mukaiseksi käyttäen \href{https://octopdf.com}{OctoPDF} ja \href{https://pdf4wcag.com}{Pdf4wcag} työkaluja.  WCAG 2.2 standardi ei täysin toteudu (pdf:ssä joitakin tyhjiä rakenteisia elementtejä ja yhteystietosivun linkistä puuttuu vaihtoehtoinen kuvaus, kuten myös mistä tahansa mahdollisesta lähdeluettolen verkkosivulinkistä). Matemaattisen notaation (MathML-sisältö) tulkinta ei välttämättä aina onnistu ruudunlukijoilla optimaalisesti. Tämän osalta tilanteen voi olettaa parantuvan lähiaikoina saavutettavien MathML:ää sisältävien dokumenttien yleistyessä. Lisäksi kannattaa huomata, että ruudunlukijalla kaikki kuvat ja taulukot tulevat lukujärjestyksessä viimeisinä huolimatta niiden sijainnista dokumentissa (tämä on ominaisuus, ei sinällään vika), mahdollisesti näiden sijaintiin lukujärjestyksessä voi vaikuttaa kuvaympäristön pakottavalla h-optiolla.
+
+\paragraph{Miten varmistat oman tutkielmasi saavutettavuuden?}
+
+Jotta saat yleiskuvan saavutettavista kuinka tuottaa saavutettava pdf-tiedosto LaTeXilla,
+tutustu \href{https://docs.overleaf.com/writing-and-editing/creating-accessible-pdfs}{Overleafin saavu\-tet\-tavuusohjeeseen}. Tässä on lyhyt tarkistuslista:
+ 
+\begin{enumerate}
+    \item Käytä tätä mallipohjaa ja noudata sen ohjeistusta. 
+    \item Jos lisäät uusia \LaTeX-paketteja, varmista \href{https://latex3.github.io/tagging-project/tagging-status/}{yhteensopivuus} saavutettavuuden kanssa.
+    \item Käytä \LaTeX{}in rakenteisia elementtejä (luvut, aliluvut, listat jne) loogisesti 
+    \item Älä tee mitään ristiinviittauksia käsin (käytä \texttt{\textbackslash label\{\} ja \texttt{\textbackslash ref\{\}}} -komentoja, sekä lähdeviittauksiin \texttt{\textbackslash parencite\{\}} tai muita komentovariantteja)
+    \item Lisää jokaiselle kuvalle kuvaava alt-teksti ja varmista kuvan visuaalinen saavutettavuus. 
+    \item Lisää jokaiseen taulukkoon tieto otsikkoriveistä tai sarakkeista ja pyri selkeään taulukkorakenteeseen.
+    \item Testaa valmiin tutkielmasi saavutettavuus. Huomaa, että työkalujen toimivuus ja saatavuus kuitenkin vaihtelee. Pdf:n saavutettavuutta voi testata esimerkiksi
+    \begin{itemize}
+        \item verkkotyökaluilla, esim. \href{https://octopdf.com}{OctoPDF} tai \href{https://pdf4wcag.com}{Pdf4wcag} (lisää vinkkejä työkaluista löydät \href{https://pdfa.org/accessible-math-in-pdf-finally/}{PDF-Associationin tiedotteesta})\footnote{Huomaa, että joudut verkkotyökaluja käyttäessäsi lataamaan tiedostosi työkalun palvelimelle.}
+        \item Adobe Acrobat Pro/DC -ohjelmalla (maksullinen)
+        \item \href{https://pac.pdf-accessibility.org/en}{PAC-saavutettuvuustyökalulla} (ilmainen, saatavilla vain Windowsille).
+    \end{itemize}
+    Ruudunlukijoita löytyy eri käyttöjärjestelmille (kts. \href{https://helpdesk.it.helsinki.fi/help/20057}{yliopiston helpdeskin ohje} ja \href{https://latex3.github.io/tagging-project/documentation/wtpdf/fulldoc}{LaTeX Tagging -projektin ohjeet}), mutta niiden toimivuus MathML:n kanssa vaihtelee suuresti (NVDA-lukija MathCAT-laajennuksella toimi testatessa varsin hyvin). \end{enumerate}
+
+
+%% Do not remove or edit, prints bibliography in correct form, 
+%% contains necessary label
+\printbibliography[heading=bibintoc,title=\mybibname]%
+\label{last_bib_page}
+
+%% Ends document, do not remove
+\end{document}

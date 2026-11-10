@@ -1,0 +1,220 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Instructions for the use on the template can be 
+%% obtained by compiling the attached file
+%% Instructions_[finnish, swedish,english].tex.
+%% The obtained pdf (and its source code) contains 
+%% step-to-step instructions for the use on the 
+%% template. Start your own thesis project by
+%% following the instructions below.
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Document metadata is needed for tagging and producing 
+%% accessible pdf
+%%
+%% STEP 1a: Select correct language for your document
+%%          for setting field 'lang' to 'fi', 'sv', or 'en'
+%% 
+%% Do not edit other fields
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DocumentMetadata{
+  lang        = fi, % or sv or en
+  pdfstandard = ua-2,
+  pdfstandard = a-4f, %or a-4
+  tagging=on,
+  tagging-setup={math/setup=mathml-SE},
+  colorprofiles= {
+  A = sRGB.icc, 
+  X = sRGB.icc, 
+  ISO_PDFE1 = sRGB.icc 
+  }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% STEP 1b: Choose options for BSc programme and
+%%         language
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%  Language: 
+%%      finnish, swedish, or english
+%%  Degree programme / kind of report
+%%      tkt  = Bachelor's thesis in Bachelor's Programme 
+%%             in Computer Science
+%%      math = Bachelor's thesis in Bachelor's Programme 
+%%             in Mathematical Sciences
+%%      science = Bachelor's thesis in Bachelor's 
+%%                Programme in Science
+%%  Other options:
+%%      a4paper sets correct papersize, do not modify
+\documentclass[finnish, tkt, a4paper]{csthesis}
+
+%%%%%%%%%%%%%%% Some useful packages %%%%%%%%%%%%%%%%%%%%
+\usepackage{amsthm,amsmath} % For better math
+\usepackage{booktabs} % For prettier tables
+% See package documentation for more information
+
+\usepackage{todonotes}
+
+%%%%%%%%%% Add your own additional packages below %%%%%%%%
+%% Note: check the tagging status of the package from 
+%% https://latex3.github.io/tagging-project/tagging-status/
+%% before using it 
+%%
+%% Be careful with algorithms packages as many of them are
+%% uncompatible with tagging.
+
+
+
+
+%%%%%%%%%% Bibliography style and file %%%%%%%%%%%%%%%%%%%
+%% The default bibliographic style is APA. 
+%% This is the only allowed style for a bachelor's thesis 
+%% (do not modify!)
+%%
+\usepackage[backend=biber,style=apa,doi=true,url=true,%
+            urldate=short,labeldate=year,%
+            datezeros=false]{biblatex}
+%% The template default bibliography file; add/modify 
+%% to match your bibliography file
+\addbibresource{bibliography.bib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% STEP 2:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Set up personal information for the title page and the
+%% abstract form. Replace parameters with your information.
+%% 
+%% Include academic titles of your supervisor(s), if 
+%% unclear, ask your supervisor.
+\supervisors{Prof.~D.U.~Mind, Dr.~O.~Why}
+
+%% Include at least three suitable keywords
+\keywords{LaTeX template, bachelor's thesis, text editing}
+
+%% Additional infromation is typically left empty
+\additionalinformation{}
+
+%% Provide classification terms, to appear on the 
+%% abstract page. Replace the classification terms 
+%% below with the ones that match your work.
+%% ACM Digital library provides a taxonomy and a tool
+%% for classification in computer science. Use 1-3 paths, 
+%% and use right arrows between the approx. three levels 
+%% in the path; each path requires a new line.
+\classification{\protect{\ \\
+\  General and reference \textrightarrow\ 
+Document types \textrightarrow\ Surveys and overviews\  \\
+\  Applied computing \textrightarrow\ 
+Document management and text processing \textrightarrow\ 
+Document management \textrightarrow\ Text editing
+}}
+
+
+\begin{document}
+
+%% Replace the placeholder title with your own
+\title{Interesting Topic in Computer Science}
+
+%% Replace with your name, or ...
+\author{John Doe}
+%% ... if you are writing a co-authored thesis, then separate 
+%% the authors with 'and' (English), 'ja' (Finnish), or 
+%% 'och' (Swedish), see example in English below
+% \author{Jane Doe and John Doe}
+
+%% The date printed in the cover is the one that results 
+%% LaTeX command \date{\today}. If you need to manually 
+%% adjust the date, you can use the \date command, see 
+%% the example below.
+% \date{1.4.2030}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% STEP 3:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\csabstract{
+%% Write your abstract here (replace the placeholder below).
+%%
+%% In addition, make sure that all the entries in the 
+%% abstract page are completed.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+}
+
+%%%%%%%%%%% Extended abstract (optional) %%%%%%%%%%%%%%%%%%
+%% Not used, if you study according to curriculum 2026--2030
+%% Not used, if you study in the Bachelor's Programme in Science 
+%% Not used, if your language of secondary edutions is Finnish 
+%%           or Swedish AND you write the thesis in the language 
+%%           of your secondary education 
+%% Not used, if your language of secondary edutions is something 
+%%           else than Finnish or Swedish 
+%%
+%% Mandatory, if you study in the Bachelor's Programme in 
+%% Computer Science or Bachelor's Programme in Mathematical 
+%% Sciences according to curriculum 2023--2026 AND write your 
+%% thesis in language other the your language of secondary 
+%% education AND your language of secondary education is
+%% Finnish or Swedish.If all these conditions are met, then you 
+%% must include an extended abstract (4--5 pages) on the 
+%% language of your secondary education in order to get 
+%% native language credits (only in Finnish or Swedish, 
+%% never in English). Uncomment include below, and see the 
+%% contents of the file for further instructions.
+%\include{Ch.01_ExtendedAbstract}
+
+%% Formatting, do not modify
+\cleardoublepage
+\pagenumbering{gobble}
+\tableofcontents
+\cleardoublepage
+\pagenumbering{arabic}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% STEP 4: Write the thesis.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Your actual text starts here. You shouldn't mess with 
+%% the code above the line except to change the parameters. 
+%% Removing the abstract and ToC commands will mess up stuff.
+%%
+%% Command \include{file} includes the file of name file.tex.
+%% A new page will be created at every \include command, 
+%% which makes it appropriate to use it for large entities 
+%% such as book chapters. Command \includefile cannot be 
+%% nested.
+%%
+%% This type of orgranisation is useful for a big project, 
+%% as changing one of the include targets won't force the 
+%% regeneration of the outputs of all the rest.
+%% Alternatively, \input is a more lower level macro which
+%% simply inputs the content of the given file like it was 
+%% copy&pasted there manually.
+
+%% Introduction and conclusions are mandatory chapters with 
+%% fixed names that every (bachelor's) thesis needs to have, 
+%% modify the remaining chapters (titles, amount) in between 
+%% the introduction and conclusions the way you see fit for 
+%% your thesis. 
+
+\include{Ch.10_Introduction} % Mandatory in bacherlor's thesis
+\include{Ch.20_Methods}
+\include{Ch.30_Results}
+% Add here more chapters, if you need them
+\include{Ch.90_Conclusions} % Mandatory in bacherlor's thesis
+
+%%%%%%%%%%%%%% Bibliography %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Do not remove or edit, prints bibliography in correct
+%% form, contains a necessary label
+\printbibliography[heading=bibintoc,title=\mybibname]\label{last_bib_page}
+
+%%%%%%%%%%%%%% Appendices %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Chapters after this are appendices
+\appendix
+% Here you can add your own appendices, if you need
+
+
+
+%% Ends document, do not remove
+\end{document}

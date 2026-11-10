@@ -1,0 +1,34 @@
+\ProvidesDictionary{translator-UHCSthesis-coverpage-dictionary}{Finnish}
+\providetranslation{translation-UHCSthesis-coverpage-dictionary}{Finnish}
+
+\providetranslation{science-bsc-level}{Bachelor's thesis}
+\providetranslation{math-bsc-level}{Kandidaatintutkielma}
+\providetranslation{tkt-bsc-level}{Kandidaatintutkielma}
+\providetranslation{csm-level}{Maisterintutkielma}
+\providetranslation{instructions}{Käyttöohjeet}
+
+\providetranslation{math-programme}{Matemaattisten tieteiden kandiohjelma}
+\providetranslation{science-programme}{Bachelor's Programme in Science}
+\providetranslation{tkt-programme}{Tietojenkäsittelytieteen kandiohjelma}
+\providetranslation{csm-programme}{Tietojenkäsittelytieteen maisteriohjelma}
+\providetranslation{department2018}{Tietojenkäsittelytieteen osasto}
+\providetranslation{uh}{Helsingin yliopisto}
+\providetranslation{helsinki}{Helsinki}
+\providetranslation{faculty}{Matemaattis-luonnontieteellinen tiedekunta}
+\providetranslation{address}{PL 68 (Pietari Kalmin katu 5)\newline 00014 Helsingin yliopisto}
+\providetranslation{eaddress}{URL: \href{https://www.cs.helsinki.fi/}{https://www.cs.helsinki.fi/}}
+\providetranslation{ytiedot}{Yhteystiedot}
+\providetranslation{supervisors}{Ohjaaja(t)}
+\providetranslation{examiner}{Tarkastaja(t)}
+\providetranslation{library}{Helsingin yliopiston kirjasto}
+\providetranslation{appendices}{liitettä}
+\providetranslation{appendice pages}{liitesivua}
+\providetranslation{pp}{sivua}
+\providetranslation{flame-alt}{Helsingin yliopiston liekkimerkki Matemaattis-luonnontieteellisen tiedekunnan väreissä eli oranssina}
+\providetranslation{page}{sivu}
+\providetranslation{pages}{sivua}
+
+\providetranslation{bibname}{Lähteet}
+\providetranslation{introtitle}{Johdanto}
+\providetranslation{concltitle}{Johtopäätökset}
+\providetranslation{aiusetitle}{Tekoälyn käyttö tutkielmassa}

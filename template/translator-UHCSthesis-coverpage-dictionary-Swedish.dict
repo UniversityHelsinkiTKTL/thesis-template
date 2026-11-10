@@ -1,0 +1,34 @@
+\ProvidesDictionary{translator-UHCSthesis-coverpage-dictionary}{Swedish}
+\providetranslation{translation-UHCSthesis-coverpage-dictionary}{Swedish}
+
+\providetranslation{math-bsc-level}{Kandidatavhandling}
+\providetranslation{science-bsc-level}{Bachelor's thesis}
+\providetranslation{tkt-bsc-level}{Kandidatavhandling}
+\providetranslation{csm-level}{Magisteravhandling}
+\providetranslation{instructions}{Anvisningar}
+
+\providetranslation{math-programme}{Kandidatprogrammet i matematiska vetenskaper}
+\providetranslation{science-programme}{Bachelor's Programme in Science}
+\providetranslation{tkt-programme}{Kandidatprogrammet i datavetenskap}
+\providetranslation{csm-programme}{Magisterprogrammet i datavetenskap}
+\providetranslation{department2018}{Avdelningen för datavetenskap}
+\providetranslation{uh}{Helsingfors universitet}
+\providetranslation{helsinki}{Helsingfors}
+\providetranslation{faculty}{Matematisk-naturvetenskapliga fakulteten}
+\providetranslation{address}{PB 68 (Pehr Kalms gata 5)\newline\indent 00014 Helsingfors universitet, Finland}
+\providetranslation{eaddress}{URL: \url{https://www.cs.helsinki.fi/}}
+\providetranslation{ytiedot}{Kontaktinformation}
+\providetranslation{library}{Helsingfors universitets bibliotek}
+\providetranslation{supervisors}{Handledare}
+\providetranslation{examiner}{Examinatorer}
+\providetranslation{appendices}{Bilagor}
+\providetranslation{appendice pages}{bilagesidor}
+\providetranslation{pp}{sidor}
+\providetranslation{flame-alt}{Helsingfors universitets lågsymbol i matematisk-naturvetenskapliga fakultetens färg dvs. orange}
+\providetranslation{page}{sida}
+\providetranslation{pages}{sidor}
+
+\providetranslation{bibname}{Referenser}
+\providetranslation{introtitle}{Inledning}
+\providetranslation{concltitle}{Slutsatser}
+\providetranslation{aiusetitle}{Användning av AI i avhandlingen}

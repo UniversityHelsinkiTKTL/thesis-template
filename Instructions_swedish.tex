@@ -1,0 +1,233 @@
+%% Document metadata is needed for tagging and producing 
+%% accessible pdf
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DocumentMetadata{
+  lang        = sv,
+  pdfstandard = ua-2,
+  pdfstandard = a-4f,
+  tagging=on,
+  tagging-setup={math/setup=mathml-SE}
+}
+
+\documentclass[swedish, manual, a4paper]{csthesis}
+
+%%%%%%%%%%%%%%% Some useful packages %%%%%%%%%%%%%%%%%%%%
+\usepackage{amsthm,amsmath} % For better math
+\usepackage{booktabs} % For prettier tables
+% See package documentation for more information
+
+
+%%%%%%%%%% Bibliography style and file %%%%%%%%%%%%%%%%%%%
+\usepackage[backend=biber,style=apa,doi=true,url=true,%
+            urldate=short,labeldate=year,%
+            datezeros=false]{biblatex}
+%% The template default bibliography file; add/modify 
+%% to match your bibliography file
+\addbibresource{bibliography.bib}
+
+\supervisors{}
+\keywords{\LaTeX{} avhandlingsmallen, kandidatavhandling, textredigering, tillgänglighet}
+\additionalinformation{Preliminär översätting från finska med AI, redigering av Patrik Floreen}
+\classification{\protect{\ \\
+\  General and reference \textrightarrow\ 
+Document types \textrightarrow\ Surveys and overviews\  \\
+\  Applied computing \textrightarrow\ 
+Document management and text processing \textrightarrow\ 
+Document management \textrightarrow\ Text editing
+}}
+
+
+\begin{document}
+
+\title{Instruktioner för användning av avhandlingsmallen}
+\author{Emilia Oikarinen}
+\thispagestyle{empty}
+\maketitle
+
+\csabstract{
+%% Write your abstract here (replace the placeholder below).
+Detta dokument ger vägledning om hur man använder Helsingfors universitets avhandlingsmall. Dessutom innehåller texten och dess källkod tips för att skriva med \LaTeX{}. Slutligen ges instruktioner för att skapa en tillgänglig pdf-fil.
+}
+
+%% Formatting, do not modify
+\cleardoublepage
+\pagenumbering{gobble}
+\tableofcontents
+\cleardoublepage
+\pagenumbering{arabic}
+
+\chapter{Instruktioner för användning av avhandlingsmallen}
+\label{app:instructions_swedish}
+
+I detta dokument ges anvisningar för hur du skriver din avhandling med hjälp av mallens grundstruktur och samtidigt säkerställer att den producerade pdf-filen är tillgänglig. Observera att mallens källkod innehåller detaljerade instruktioner i kommentarer (prefixerade med \%-tecknet), så bekanta dig med källkoden.
+
+\section{Att ta mallen i bruk}
+
+\paragraph{Steg 1: Kopiera avhandlingsmallen}
+Det rekommenderade sättet är att kopiera avhandlingsmallen till ett nytt Overleaf-projekt. Detta görs enklast så här:
+\begin{itemize}
+    \item Gå till \href{https://www.overleaf.com/edu/helsinki}{www.overleaf.com/edu/helsinki} och logga in på Overleaf med dina universitetsuppgifter.
+    \item
+    Kopiera avhandlingsmallen från adressen som är länkad till kandidatseminariets Moodle\footnote{Detta säkerställer att du använder den mest aktuella versionen.}
+    (se \href{https://docs.overleaf.com/managing-projects-and-files/copying-a-project}{instruktioner för att kopiera projekt})
+    \item Därefter kan du börja ta mallen i bruk. Det är bra att först byta projektets namn, t.ex. till ”Efternamn-Förnamn”.
+    \item {\bf Obs!} Mallen är utformad för att användas med LuaLaTeX-kompilatorn och Tex Live 2025. Se till att rätt kompilator är inställd i Overleaf-menyn File $\rightarrow$ Settings $\rightarrow$ Compiler.
+\end{itemize}
+En alternativ metod för de som använder en lokal \LaTeX-installation är att ladda ner mallen som en zip-fil från Overleaf och extrahera paketet till önskad mapp. I det här fallet är det värt att se till att mallen kompileras utan problem. Det rekommenderas att använda en LaTeX-version från 2025 (LaTeX 2025-11-01 eller senare) med LuaLaTeX.
+
+
+\paragraph{Steg 2: Välj utbildningsprogram och språk för avhandlingen}
+Ange först språket för ditt dokument i metadatafältet (i början av \texttt{HY-CS-main.tex}-filen i kommandot \texttt{\textbackslash DocumentMetadata}) genom att ställa in språkfältet till \texttt{fi}, \texttt{sv} eller \texttt{en}.
+
+Fortsätt genom att välja lämpliga alternativ för språk och utbildningsprogram för kommandot \texttt{\textbackslash documentclass}.
+Ditt utbildningsprogram avgör om du skriver ett kandidat- eller magisterarbete.
+Mallen stöder följande utbildningsprogram:
+\begin{itemize}
+\item Kandidatprogrammet i datavetenskap (\texttt{tkt}),
+\item Kandidatprogrammet i matematiska vetenskaper (\texttt{math}) och
+\item Bachelor's Programme in Science (\texttt{science}).
+\end{itemize}
+Välj också språk för avhandlingen: \texttt{finnish}, \texttt{english} eller \texttt{swedish}.
+
+\paragraph{Steg 3: Ange personuppgifter, nyckelord och sammanfattning}
+Fyll i lämpliga (preliminära) uppgifter i följande kommandon (du kommer sannolikt att återkomma och komplettera dessa under processens gång):
+\begin{itemize}
+\item Avhandlingens titel: \texttt{\textbackslash title\{\}}
+\item Författare (vid paravhandling båda författarna, separerade med ordet ’och’):\\ \texttt{\textbackslash author\{\}}
+\item Handledare och akademisk titel: \texttt{\textbackslash supervisors\{\}}
+\item Nyckelord: \texttt{\textbackslash keywords\{\}}
+\item Avhandlingens ACM-klassificeringstermer: \texttt{\textbackslash classification\{\}} (\href{https://dl.acm.org/ccs}{mer information om klassificering})
+\item Sammanfattning: \texttt{\textbackslash csabstract\{\}} \\(i kandidatavhandlingar skrivs sammanfattningen på avhandlingens språk; om du behöver en sammanfattning på ett annat språk, se kapitel \ref{app:latex-tips})
+\end{itemize}
+
+\paragraph{Steg 4: Skriv avhandlingen}
+Det enda som återstår är själva arbetet: att skriva avhandlingen.  
+I följande kapitel finns några praktiska \LaTeX-tips samt instruktioner för att producera en tillgänglig pdf-fil. Avhandlingsprocessen och vetenskapligt skrivande med \LaTeX{} behandlas mer utförligt i bl.a. materialet för kandidatseminariet \parencite{tieteellinenkirjoittaminen}.
+
+Mallen innehåller fasta rubriker för kapitlen \textit{Inledning}, \textit{Slutsatser} och \textit{Användning av AI i avhandlingen}. Ändra inte dessa. 
+
+\paragraph{Obligatoriska avsnitt i en kandidatavhandling}
+Varje kandidatavhandling måste innehålla en beskrivning av användningen av artificiell intelligens i uppsatsen som ett (onumrerat) avsnitt i kapitlet {\em Slutsatser}
+(se fil \texttt{Ch.40\_Conclusions.tex}).
+
+Om avhandlingen skrivs med ett par krävs ett ytterligare avsnitt som beskriver arbetsfördelningen mellan författarna (se fil \texttt{Ch.40\_Conclusions.tex}). Avhandlingar av en person behöver inte denna del.
+
+Slutligen måste en liten grupp studenter lägga till en sammanfattning på sitt skolutbildningsspråk. Detta kräver att alla följande villkor är uppfyllda:
+\begin{enumerate}
+\item Studentens utbildningsprogram är kandidatprogrammet i datavetenskap eller kandidatprogrammet i matematiska vetenskaper.
+\item Studenten studerar enligt undervisningsplan 2023--2026.
+\item Studentens skolutbildningsspråk är finska eller svenska.
+\item Avhandlingen skrivs på ett annat språk än skolutbildningsspråket.
+\end{enumerate}
+Om ovanstående villkor är uppfyllda, läs filen \texttt{Ch.01\_ExtendedAbstract.tex} och dess instruktioner. För de flesta studenter krävs inte en separat sammanfattning på skolutbildningsspråket. Sammanfattningen läggs till efter abstraktssidan, före innehållsförteckningen.
+
+
+\section{Tips för att skriva med \LaTeX}\label{app:latex-tips}
+
+Detaljerade \LaTeX-anvisningar hittas bäst genom internetsökningar (även AI-verktyg fungerar), t.ex. ”Overleaf table positioning”. Overleafs omfattande instruktioner finns på \url{https://www.overleaf.com/learn}.
+
+\paragraph{Att ange ett annat språk för en del av avhandlingen}
+Om du behöver en sammanfattning eller annan del av texten på ett annat språk än dokumentets språk, använd \texttt{otherlanguage}-miljön (den hanterar bl.a. korrekt avstavning):
+
+\begin{verbatim}
+\begin{otherlanguage}{english} 
+Your text in English goes here. 
+\end{otherlanguage}
+Efter detta fortsätter texten på svenska.
+\end{verbatim}
+
+\paragraph{Litteraturförteckningens stil}
+Standardstilen i mallen är författare–år (APA-stil), t.ex. \parencite{einstein}. I kandidatavhandlingar är detta den enda tillåtna stilen.
+
+\paragraph{Källhänvisningar i \LaTeX}
+Litteraturuppgifter sparas i en separat \texttt{.bib}-fil. I denna mall finns de i \texttt{bibliography.bib}.
+
+Med APA-stilen görs basreferenser med \texttt{\textbackslash parencite\{einstein\}}, vilket genererar en referens \parencite{einstein}. Kommandot \texttt{\textbackslash parencite\{latexcompanion,knuth99\}} genererar \parencite{latexcompanion,knuth99}.
+
+Det finns många referenskommandon, särskilt användbara med författare–år-stilar, t.ex. \textcite{einstein}, \citeauthor{einstein}, \citeyear{einstein}. Se källkoden och \href{https://tug.ctan.org/info/biblatex-cheatsheet/biblatex-cheatsheet.pdf}{Bib\LaTeX‑cheatsheet}.
+
+Källmaterial som citeras i texten (och endast det som citeras i texten) inkluderas automatiskt i referenslistan. Så det är okej om det finns extra information i den bibliografiska filen. Noggrannheten och konsistensen i den bibliografiska informationen i källorna i .bib-filen påverkar hur informationen visas i avhandlingen. Detta är viktigt att notera, eftersom man till exempel inte kan lita på fullständigheten eller enhetligheten hos information som finns på internet i {Bib\TeX}-format. Det är på författarens ansvar att säkerställa en konsekvent referensstil, även om någon programvara för referenshantering används.
+
+I filen \texttt{bibliography.bib} hittar du exempel på följande vanliga bib-poster (se filen för hur de olika fälten presenteras; observera också att inte alla fält skrivs ut i bibliografin)\footnote{Tips: I koden för detta dokument hittar du exempel på tre olika listmiljöer (\texttt{itemize}, \texttt{enumerate} och \texttt{description}).}:
+\begin{description}
+\item[\texttt{@book}:] bok, t.ex. \parencite{deep-learning-book,latexcompanion,knuth99}
+\item[\texttt{@article}:] tidskriftsartikel, t.ex. \parencite{JanzenS05,einstein}
+\item[\texttt{@inproceedings}:] artikel i ett vetenskapligt konferensbidrag, t.ex. \parencite{HiltonTHMD16}
+\item[\texttt{@online}:] onlinematerial, t.ex. \parencite{knuthwebsite}
+\item[\texttt{@misc}:] material som inte ingår i en annan kategori, t.ex. \parencite{tieteellinenkirjoittaminen}
+\end{description}
+
+\paragraph{Bilder}
+Figur~\ref{fig:logo-sv} fungerar som ett exempel på hur man lägger till en bild (se mallen i \LaTeX-källkoden för mer information). Varje bild måste ha en bildtext. Kom också ihåg att referera till varje bild i texten. För att säkerställa tillgänglighet (se mer i avsnitt \ref{sec:tillganglighet}) behöver varje bild också en alt-text (se \LaTeX-källkoden för hur man lägger till den). En synskadad läsare av din text kanske inte kan förstå din bild genom att titta på den. Om de använder en skärmläsare som läser din text högt eller återger den i punktskrift, kommer alt-texten att läsas eller visas i punktskrift istället för bilden. Till exempel innehåller \href{https://accessibility.huit.harvard.edu/describe-content-images}{Harvard universitetets anvisningar} tips för att skriva bra alt-text.
+
+\begin{figure}[t] % placement options t,b,h
+\centering 
+\includegraphics[alt={Helsingfors universitets lågsymbol i matematisk-naturvetenskapliga fakultetens färg dvs. orange}, width=0.3\textwidth]{template/figures/flame.png}
+\caption{Helsingfors universitets logo i matematisk-naturvetenskapliga fakultetens färg.\label{fig:logo-sv}}
+\end{figure}
+
+\paragraph{Tabeller}
+Tabell~\ref{table:results-sv} är ett exempel på hur man rapporterar experimentella resultat som en tabell. Kom också ihåg att referera till varje tabell i texten. Mallen använder \texttt{booktabs}-paketet och mer information finns i paketet och formateringen av tabeller finns i \href{https://ctan.org/pkg/booktabs}{booktabs-package-dokumentationen}.
+%
+Tillgängligheten till tabeller kan förbättras genom att utforma en struktur som är så tydlig som möjligt. Skärmläsare har svårigheter, till exempel om tabellen innehåller information som är spridd över flera rader, men som tydligt hör ihop baserat på den visuella presentationen. För att säkerställa tillgängligheten, ange även vilka rader/kolumner i din tabell som är rubrikrader (se tabellens \ref{table:results-sv} \LaTeX-källkod för ett enkelt exempel på hur man lägger till information).
+
+\tagpdfsetup{table/header-rows={1}} 
+\tagpdfsetup{table/header-columns={1}} 
+%% om de två första raderna vore rubrikrader, använd {1,2}
+\begin{table}[b] % placement options t,b,h
+\centering
+\caption{Experimentella resultat. För varje försöksupplägg $A$, $B$ och $A+B$ rapporteras körtiden i sekunder för tre separata faser. \label{table:results-sv}}
+\begin{tabular}{l r r r} \toprule
+Försöksupplägg & Fas 1 & Fas 2 & Fas 3 \\ 
+\midrule 
+$A$ & 2.5 & 4.7 & 11.4 \\
+$B$ & 8.0 & 3.7 & 12.6 \\
+$A+B$ & 10.5 & 1.0 & 1.6 \\\bottomrule
+%
+\end{tabular}
+\end{table}
+
+\section{Tillgänglighet}
+\label{sec:tillganglighet}
+
+
+EU-direktivet om tillgängligheten för webbplatser och mobilapplikationer (direktiv (EU) 2016/2102) kräver att material på offentliga webbplatser ska vara tillgängligt. Detta gäller även avhandlingar, eftersom publikationer vid universitet är offentliga (lagen om offentlighet i myndigheternas verksamhet 621/1999). En pdf-fil är tillgänglig om den tar hänsyn till användare med funktionsnedsättningar, t.ex. de som använder skärmläsare.
+
+Denna mall är utformad för att ge så tillgängliga pdf-filer som möjligt. Konkret innebär detta att dokumentet innehåller strukturell information som behövs för att program för synskadade ska kunna läsa upp innehållet eller omvandla det till punktskrift. Observera att tillgänglighet omfattar mycket mer än detta; det är i stor utsträckning författarens ansvar att säkerställa att det färdiga arbetet är tillgängligt.
+
+Även om \LaTeX{}-filer innehåller mycket strukturerad information är pdf-filer som producerats med \LaTeX{} inte i sig tillgängliga. Detta problem har åtgärdats under senare år i \href{https://latex3.github.io/tagging-project}{\LaTeX{} Tagging Project} och i mars 2026 publicerade PDF Association ett \href{https://pdfa.org/accessible-math-in-pdf-finally}{pressmeddelande} om att det är möjligt att producera tillgängliga PDF-filer med LaTeX, som också innehåller matematisk notation och formler. \LaTeX{} Tagging Project upprätthåller \href{https://latex3.github.io/tagging-project/documentation/}{dokumentation}, inklusive \href{https://latex3.github.io/tagging-project/documentation/usage-instructions}{användningsinstruktioner} och också \href{https://latex3.github.io/tagging-project/documentation/wtpdf/fulldoc}{en mer omfattande guide}. 
+
+
+Mallens tillgänglighet har testats med skärmläsaren NVDA i Windows-miljö med Acrobat Reader. Se även universitets instruktioner: \href{https://helpdesk.it.helsinki.fi/help/20057}{testning av tillgänglighet med skärmläsare}. NVDA kräver ett tillägg för att läsa matematiska uttryck. För testerna användes tillägget \href{https://addons.nvda-project.org/addons/MathCAT.en.html}{MathCAT}.
+
+
+Instruktioner om tillgängligheten av PDF-filer finns också på \href{https://www.saavutettavasti.fi/sv/tillgangliga-dokument/pdf/}{saavutettavasti.fi (på svenska)} och i \href{https://pdfa.org/accessible-math-in-pdf-finally}{pressmeddelande av PDF Association}.
+Denna mall har verifierats för att följa PDF/UA-2, PDF/A-4f\footnote{Observera att mallens färgprofil är inställd på RGB och att PDF/A-4f-standarden kommer att brytas om du lägger till bilder som producerats med CYMK-färgprofilen till din avhandling.}, ISO 32005 och WTPDF 1.0 standarderna med hjälp av verktygen \href{https://octopdf.com}{OctoPDF} och \href{https://pdf4wcag.com}{Pdf4wcag}. 
+WCAG 2.2-standarden är inte helt implementerad (pdf-filen innehåller några tomma strukturella element och länken till kontaktsidan saknar en alternativ beskrivning, liksom eventuella alla länkar (urls) i referenser). Tolkningen av matematisk notation (MathML-innehåll) är inte alltid optimal för skärmläsare. Denna situation kan förväntas förbättras inom en snar framtid i takt med att tillgängliga dokument som innehåller MathML blir vanligare. Det är också värt att notera att alla bilder och tabeller visas sist i läsordningen för skärmläsare, oavsett deras position i dokumentet (detta är en funktion, inte ett fel i sig). Deras position i läsordningen kan kanske påverkas av h-optionen i bildmiljön.
+
+
+\paragraph{Hur säkerställer jag att min avhandling är tillgänglig?}
+
+För att få en översikt över hur man skapar en tillgänglig PDF-fil med \LaTeX,
+kolla in \href{https://docs.overleaf.com/writing-and-editing/creating-accessible-pdfs}{Overleafs tillgänglighetsguide}. Här är en kort checklista:
+
+\begin{enumerate}
+    \item Använd denna mall och följ dess instruktioner.
+    \item Om du behöver nya \LaTeX‑paket, \href{https://latex3.github.io/tagging-project/tagging-status/}{kontrollera  deras kompatibilitet} med tillgänglighet.
+    \item Använd \LaTeX:s strukturella element (kapitel, underkapitel, listor osv.) logiskt.
+\item Gör inga korsreferenser manuellt (använd kommandona \texttt{\textbackslash label\{\} och \texttt{\textbackslash ref\{\}}}, och för källhänvisningar, \texttt{\textbackslash parentite\{\}} eller andra kommandovarianter)
+\item Lägg till beskrivande alt-text till varje bild och säkerställ visuell tillgänglighet till bilden.
+\item Lägg till information om rubrikrader eller kolumner till varje tabell och sträva efter en tydlig tabellstruktur.
+\item Testa tillgängligheten för din färdiga avhandling. Observera att funktionaliteten och tillgängligheten för verktyg varierar. Du kan testa tillgängligheten för en PDF, till exempel
+\begin{itemize}
+\item med onlineverktyg, t.ex. \href{https://octopdf.com}{OctoPDF} eller \href{https://pdf4wcag.com}{Pdf4wcag} (fler tips om verktygen finns på \href{https://pdfa.org/accessible-math-in-pdf-finally}{i PDF Associations pressmeddelande})\footnote{Observera att när du använder onlineverktyg måste du ladda upp din fil till verktygets server.}
+\item med Adobe Acrobat Pro/DC (betalt)
+\item \href{https://pac.pdf-accessibility.org/en}{PAC-tillgänglighetsverktyg} (gratis, endast tillgängligt för Windows).
+\end{itemize}
+Skärmläsare finns tillgängliga för olika operativsystem (se \href{https://helpdesk.it.helsinki.fi/help/20057}{instruktioner på universitetets helpdesk} och \href{https://latex3.github.io/tagging-project/documentation/wtpdf/fulldoc}{LaTeX{} Tagging Project instruktioner}), men deras funktionalitet med MathML varierar kraftigt (NVDA med MathCAT-tillägget fungerade ganska bra i testning). 
+\end{enumerate}
+
+
+\printbibliography[heading=bibintoc,title=\mybibname]%
+\label{last_bib_page}
+\end{document}

@@ -1,0 +1,231 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Document metadata is needed for tagging and producing 
+%% accessible pdf
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DocumentMetadata{
+  lang        = en,
+  pdfstandard = ua-2,
+  pdfstandard = a-4f,
+  tagging=on,
+  tagging-setup={math/setup=mathml-SE}
+}
+
+\documentclass[english, manual, a4paper]{csthesis}
+
+%%%%%%%%%%%%%%% Some useful packages %%%%%%%%%%%%%%%%%%%%
+\usepackage{amsthm,amsmath} % For better math
+\usepackage{booktabs} % For prettier tables
+% See package documentation for more information
+
+%%%%%%%%%% Bibliography style and file %%%%%%%%%%%%%%%%%%%
+\usepackage[backend=biber,style=apa,doi=true,url=true,%
+            urldate=short,labeldate=year,%
+            datezeros=false]{biblatex}
+%% The template default bibliography file; add/modify 
+%% to match your bibliography file
+\addbibresource{bibliography.bib}
+
+\supervisors{}
+\keywords{\LaTeX{} template, bachelor's thesis, text editing, accessibility}
+\additionalinformation{Translated initially from Finnish using AI, then manually edited by Emilia Oikarinen}
+\classification{\protect{\ \\
+\  General and reference \textrightarrow\ 
+Document types \textrightarrow\ Surveys and overviews\  \\
+\  Applied computing \textrightarrow\ 
+Document management and text processing \textrightarrow\ 
+Document management \textrightarrow\ Text editing
+}}
+
+
+
+\begin{document}
+
+\title{Guide for the CS thesis template V-1.0}
+\author{Emilia Oikarinen}
+\thispagestyle{empty}
+\maketitle
+
+\csabstract{
+This document provides instructions for using the thesis template. In addition, this guide and its source code contain tips for writing with \LaTeX{}. Finally, instructions are provided for producing an accessible pdf file.
+}
+
+%% Formatting, do not modify
+\cleardoublepage
+\pagenumbering{gobble}
+\tableofcontents
+\cleardoublepage
+\pagenumbering{arabic}
+
+\chapter{Guide for using the template}
+\label{appendix:instructions_english}
+
+This document provides instructions on how to write your thesis using the template while ensuring the accessibility of the produced PDF file. Note that detailed instructions are embedded in the comments (prefixed with \%) of the template source code and this manual's source code, so make sure to read the code, too.
+
+\section{Setting up the template}
+
+\paragraph{Step 1: Copy the thesis template}
+The recommended method is to copy the thesis template into a new Overleaf project. The easiest way to do this is:
+\begin{itemize}
+    \item Go to \href{https://www.overleaf.com/edu/helsinki}{www.overleaf.com/edu/helsinki} and sign in to Overleaf with your university credentials (SSO login).
+    \item Copy the thesis template from the link provided in CS Bachelor's thesis seminar Moodle\footnote{This ensures that you use an up-to-date version of the template.}
+    (see \href{https://docs.overleaf.com/managing-projects-and-files/copying-a-project}{the instructions for copying a project})
+    \item After this, you are ready to start exploring and adopting the template. As a first step, it is recommended to rename the project, e.g., to “Lastname-Firstname”.
+\item {\bf Note!} The template is designed to be used with the LuaLaTeX compiler and Tex Live 2025. Make sure the correct compiler is set in the Overleaf menu File $\rightarrow$ Settings $\rightarrow$ Compiler.
+\end{itemize}
+An alternative approach for those using a local \LaTeX{} installation is to download the template as a zip file from Overleaf and extract it into suitable directory. In this case, make sure that the template compiles without issues. It is recommended to use a LaTeX Release from 2025 (LaTeX 2025-11-01 or newer) and to use the Unicode engine LuaLaTeX
+instead of pdfLaTeX.
+
+\paragraph{Step 2: select the degree program and the language of the thesis}
+First, specify the language of your document in the metadata (at the beginning of the file \texttt{HY-CS-main.tex} in the \texttt{\textbackslash DocumentMetadata} command) by setting the \texttt{lang} field to \texttt{fi}, \texttt{sv} or \texttt{en}.
+
+Continue by selecting the appropriate options for the language and degree program for the \texttt{\textbackslash documentclass} command. Your degree program determines whether you are writing a bachelor's thesis or a master's thesis.
+The template supports the following degree programs:
+\begin{itemize}
+\item Bachelor’s Programme in Computer Science (\texttt{tkt}),
+\item Bachelor’s Programme in Mathematical Sciences (\texttt{math}), and
+\item Bachelor’s Programme in Science (\texttt{science}).
+\end{itemize}
+Choose also the option for the thesis language: \texttt{finnish}, \texttt{english}, or \texttt{swedish}.
+
+\paragraph{Step 3: Specify personal information, keywords, and abstract}
+Provide suitable (preliminary) information in the following commands 
+(you will return to update these during the thesis process):
+\begin{itemize}
+\item Thesis title: \texttt{\textbackslash title\{\}}
+\item Author’s name (for co-authored theses, list names separated by “and”): \texttt{\textbackslash author\{\}}
+\item Supervisor(s) name(s) and academic title(s): \texttt{\textbackslash supervisors\{\}}
+\item Keywords: \texttt{\textbackslash keywords\{\}}
+\item ACM classification terms: \texttt{\textbackslash classification\{\}} (\href{https://dl.acm.org/ccs}{information about the classification})
+\item Abstract: \texttt{\textbackslash csabstract\{\}} \\(For bachelor’s theses, the abstract must be in the same language as the thesis; if you need the abstract in a different language, see Chapter \ref{app:latex-hints} for how to set other language for a part of the  document.)
+\end{itemize}
+
+\paragraph{Step 4: Write the thesis}
+Now, you only need to do all the work, i.e., write the thesis.  
+The following sections provide some practical \LaTeX{} tips and instructions on producing an accessible PDF. The process of writing a bachelor's thesis and producing scientific text using \LaTeX{} is discussed more broadly, e.g., in the materials of the Bachelor’s thesis seminar \parencite{tieteellinenkirjoittaminen}.
+
+The chapter titles \emph{Introduction}, \emph{Conclusions}, and \emph{Use of AI in the Thesis} are fixed and provided in the template. Do not edit these. 
+
+\paragraph{Mandatory sections in a bachelor’s thesis}
+Every bachelor's thesis must include a (unnumbered) section in the {\em Conclusions} chapter describing the use of artificial intelligence in the thesis (see file \texttt{Ch.40\_Conclusions.tex}).
+
+If the thesis is written with a pair (co-authored thesis), an additional section describing the division of work between the authors is required (see file \texttt{Ch.40\_Conclusions.tex}). This section is not required for individually written theses.
+
+Finally, a small group of students must include an additional extended summary in the language of secondary education. This is required if {\bf all} the following conditions hold:
+\begin{enumerate}
+    \item Student's study programme is Bachelor’s Programme in Computer Science or Bachelor’s Programme in Mathematical Sciences.
+    \item The student follows the 2023--2026 curriculum.
+    \item The student's language of secondary education is Finnish or Swedish.
+    \item The thesis is written in a language other than the student's language of secondary education.
+\end{enumerate}
+If all the above conditions are met, please refer to the file \texttt{Ch.01\_ExtendedAbstract.tex} and its instructions. For most students, a separate extended abstract is not required. 
+The extended abstract is added after the abstract page, before the table of contents.
+
+\section{Tips for writing in \LaTeX}\label{app:latex-hints}
+
+Detailed \LaTeX{} instructions can be best found through online searches (AI tools may also helpful). For example, searching for “Overleaf table positioning” will likely provide a useful answer. Overleaf provides extensive  \href{https://www.overleaf.com/learn}{\LaTeX{} tutorials and documentation}.
+
+\paragraph{Setting another language for part of the thesis}
+If you need to typeset your abstract or some other section in a language different from the primary thesis language, you can set the language using the \texttt{otherlanguage} environment (this ensures, e.g., correct hyphenation). 
+Example:
+
+\begin{verbatim}
+\begin{otherlanguage}{finnish} 
+Suomenkielinen teksti kirjoitetaan tähän.
+\end{otherlanguage}
+After this, the text continues in English.
+\end{verbatim}
+
+\paragraph{Bibliography style}
+The default style in the template is an author-year citation style (specifically APA), e.g., \parencite{einstein}. For Bachelor’s theses, this is the only allowed citation style.
+
+\paragraph{Citations in \LaTeX{}}
+
+Bibliographic information is stored in a separate .bib text file. In this template, the bibliographic entries are in the file \texttt{bibliography.bib}.
+
+When using APA style citations are typically created with \texttt{\textbackslash parencite\{einstein\}}, which produces a reference formatted as \parencite{einstein}. Correspondingly, \parencite{latexcompanion,knuth99} is generated with \texttt{\textbackslash parencite\{latexcompanion,knuth99\}}.
+
+There are many citation commands, which are especially useful in author-year styles. For example, you can write that \textcite{einstein} discovered something, referring to the author \citeauthor{einstein} and publication year \citeyear{einstein}, assuming the entry with key \texttt{einstein} exists in your .bib file (see the \LaTeX{} source code for details). You find a list of different citation commands , e.g., in \href{https://tug.ctan.org/info/biblatex-cheatsheet/biblatex-cheatsheet.pdf}{Bib\LaTeX{} cheatsheet}.
+
+Only the sources cited in the text appear in the bibliography automatically. Hence, extra entries in the .bib file do not matter. The accuracy and consistency of bibliographic information in the .bib file affect how the reference appears in the thesis. Note that Bib\TeX{} data found online (e.g., in Google Scholar) is often incomplete or inconsistent. 
+
+You find examples of the most common Bib\TeX{} entry types from the file \texttt{bibliography.bib} (see what information is provided for different entry types; note also that there are fields whose information is not shown in the list of references)\footnote{Hint: in the source code of this document you will find examples of three different list environments (\texttt{itemize}, \texttt{enumerate} and \texttt{description}).}:
+\begin{description}
+    \item[\texttt{@book}]--  book, e.g.  \parencite{deep-learning-book,latexcompanion,knuth99}
+    \item[\texttt{@article}]-- journal article, e.g.  \parencite{JanzenS05,einstein}
+    \item[\texttt{@inproceedings}]-- article in conference proceedings, e.g., \parencite{HiltonTHMD16}
+    \item[\texttt{@online}]-- online material, e.g., \parencite{knuthwebsite}
+    \item[\texttt{@misc}]-- miscellaneous materials not fitting to any other category, e.g., \parencite{tieteellinenkirjoittaminen}
+\end{description}
+
+
+\paragraph{Figures}
+Figure~\ref{fig:logo-en} shows an example of including a figure (see the \LaTeX{} source for details). Each figure must have a caption. Always refer to each figure in the text. For accessibility (see Section \ref{app:accessibility}), every figure must also have an alt-text (see the source code for an example). A visually impaired reader may rely on a screen reader, which will read the alt-text instead of showing the image. For advice on writing good alt-text, see, e.g., \href{https://accessibility.huit.harvard.edu/describe-content-images}{the Harvard University guidelines}.
+
+\begin{figure}[t] % placement options t,b,h
+\centering 
+\includegraphics[alt={The flame emblem of the University of Helsinki in the the Faculty of Science colour, i.e., orange.}, width=0.3\textwidth]{template/figures/flame.png}
+\caption{University of Helsinki logo in the Faculty of Science colour.\label{fig:logo-en}}
+\end{figure}
+
+\paragraph{Tables}
+
+Table~\ref{table:results-en} shows an example of reporting experimental results. Always refer to each table in the text. This template uses the \texttt{booktabs} package; see the \href{https://ctan.org/pkg/booktabs}{Booktabs documentation} for details.
+
+Accessibility can be improved by designing a clear table structure. Screen readers struggle when a table contains visually grouped information spanning multiple rows. To ensure accessibility, specify explicitly which table rows/columns are headers (see the source for an example).
+
+\tagpdfsetup{table/header-rows={1}} 
+\tagpdfsetup{table/header-columns={1}} 
+%% if two first rows were header rows/columns, then {1,2}
+\begin{table}[b] % placement options t,b,h
+\centering
+\caption{Experimental results. For each experiment $A$, $B$, and $A+B$, the running times of three separate stages are reported in seconds. \label{table:results-en}}
+\begin{tabular}{l r r r} \toprule
+Experiment & Stage 1 & Stage 2 & Stage 3 \\ 
+\midrule 
+$A$ & 2.5 & 4.7 & 11.4 \\
+$B$ & 8.0 & 3.7 & 12.6 \\
+$A+B$ & 10.5 & 1.0 & 1.6 \\\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Accessibility}
+\label{app:accessibility}
+
+The EU directive on the accessibility of websites and mobile applications (Directive (EU) 2016/2102) requires that materials on public websites are accessible. This also applies to theses, as they are public documents (Act on the Openness of Government Activities, 21.5.1999/621). Accessibility means considering possible functional limitations of users, including the use of screen readers. This template aims to produce pdf-files that are as accessible as possible. Concretely, this means they contain the structural information required by assistive technologies to read the document aloud or present it in braille. Note that accessibility is much broader concept than structural tagging, so ensuring the accessibility of the content remains primarily the author's responsibility.
+
+
+Although \LaTeX{} files contain a lot of structured information, PDF files produced with \LaTeX{} are not  accessible by default. This problem has been addressed in recent years in the \href{https://latex3.github.io/tagging-project/}{\LaTeX Tagging Project}
+and in March 2026 the PDF Association published a \href{https://pdfa.org/accessible-math-in-pdf-finally/}{news} that it is finally possible to produce accessible PDF files with LaTeX, which also contain mathematical notation and formulas. It is worth reading the \href{https://latex3.github.io/tagging-project/documentation/}{instructions} found in the \href{https://latex3.github.io/tagging-project/documentation/}{documentation section} of the \href{https://latex3.github.io/tagging-project/documentation/}{usage-instructions}, 
+and for those interested, there is also a \href{https://latex3.github.io/tagging-project/documentation/wtpdf/fulldoc}{extensive guide}.
+
+The accessibility of this template has been tested using the NVDA screen reader with Windows and Adobe Acrobat Reader. See the instructions for \href{https://helpdesk.it.helsinki.fi/en/instructions/other-instructions/accessibility-testing-screen-readers}{accessibility testing with screen readers}. Note that NVDA requires an add-on to be able to read mathematical expressions. We use in testing \href{https://addons.nvda-project.org/addons/MathCAT.en.html}{MathCAT}.
+
+Information on the accessibility of PDF files be found on the \href{https://pdfa.org/accessible-math-in-pdf-finally/}{in the PDF Association's press release}. This template has been verified to comply with PDF/UA-2, PDF/A-4f\footnote{Note that the color profile of the template is set to RGB and the PDF/A-4f standard will be broken if you add images produced with the CYMK color profile to your thesis.}, ISO 32005 and WTPDF 1.0
+standards using the \href{https://octopdf.com}{OctoPDF} and \href{https://pdf4wcag.com}{Pdf4wcag} tools. The WCAG 2.2 standard is not yet fully achieved (the pdf contains some empty structural elements and the url in the contact information page lacks an alternative description, as will any possible urls in references lack, too). The interpretation of mathematical notation (MathML content) may not always be optimal for screen readers. This situation is expected to improve in the near future as accessible documents containing MathML become more common. It is also worth noting that all images and tables appear last in the reading order for screen readers, regardless of their position in the document (this is a feature, not a bug per se). Their position in the reading order may potentially be affected by the h option of the figure environment (not tested).
+
+
+\paragraph{How to ensure that a thesis is accessible?}
+
+To get an overview of how to produce an accessible PDF file with \LaTeX,
+check out Overleaf's guide on \href{https://docs.overleaf.com/writing-and-editing/creating-accessible-pdfs}{Creating accessible PDFs in LaTeX}. Here is a short checklist:
+
+\begin{enumerate}
+    \item Use this template and follow its instructions.
+    \item If you add new \LaTeX{} packages, check their \href{https://latex3.github.io/tagging-project/tagging-status/}{compatibility status} from the \LaTeX{} Tagging Project listing.
+    \item Use the structural elements in \LaTeX{} (chapters, sections, lists, etc.) logically.
+    \item Do not make any cross-references manually (use the \texttt{\textbackslash label\{\} and \texttt{\textbackslash ref\{\}}} commands, and for citations, \texttt{\textbackslash parentcite\{\}} or other  variants).
+    \item Add descriptive alt-text to every figure and ensure visual accessibility.
+    \item For each table, specify the header rows/columns and aim for a clear logical structure.
+\item Test the accessibility of your finished thesis. Note that the functionality and availability of tools vary. You can test the accessibility of PDFs, for example,
+\begin{itemize}
+\item with online tools, e.g. \href{https://octopdf.com}{OctoPDF} or \href{https://pdf4wcag.com}{Pdf4wcag} (more hints on the tools can be found at \href{https://pdfa.org/accessible-math-in-pdf-finally/}{in the PDF-Association's press release})\footnote{Note that when using online tools, you will have to upload your files to the tool's server.},
+\item with Adobe Acrobat Pro/DC (not free), or
+\item \href{https://pac.pdf-accessibility.org/en}{PAC accessibility tool} (free, only available for Windows).
+\end{itemize}
+Screen readers are available for different operating systems (see \href{https://helpdesk.it.helsinki.fi/help/20057}{university helpdesk instructions} and \href{https://latex3.github.io/tagging-project/documentation/wtpdf/fulldoc}{LaTeX Tagging project instructions}), but their functionality with MathML varies greatly (NVDA with the MathCAT extension worked quite well in testing). 
+\end{enumerate}
+
+\printbibliography[heading=bibintoc,title=\mybibname]%
+\label{last_bib_page}
+
+\end{document}

@@ -1,0 +1,35 @@
+\ProvidesDictionary{translator-UHCSthesis-coverpage-dictionary}{English}
+\providetranslation{translation-UHCSthesis-coverpage-dictionary}{English}
+
+\providetranslation{math-bsc-level}{Bachelor's thesis}
+\providetranslation{science-bsc-level}{Bachelor's thesis}
+\providetranslation{tkt-bsc-level}{Bachelor's thesis}
+\providetranslation{csm-level}{Master's thesis}
+\providetranslation{instructions}{User guides}
+
+
+\providetranslation{math-programme}{Bachelor's Programme in Mathematical Sciences}
+\providetranslation{science-programme}{Bachelor's Programme in Science}
+\providetranslation{tkt-programme}{Bachelor's Programme in Computer Science}
+\providetranslation{csm-programme}{Master's Programme in Computer Science}
+\providetranslation{department2018}{Department of Computer Science}
+\providetranslation{uh}{University of Helsinki}
+\providetranslation{helsinki}{Helsinki}
+\providetranslation{faculty}{Faculty of Science}
+\providetranslation{address}{P. O. Box 68 (Pietari Kalmin katu 5)\newline 00014 University of Helsinki, Finland}
+\providetranslation{eaddress}{URL: \url{https://www.cs.helsinki.fi/}}
+\providetranslation{ytiedot}{Contact information}
+\providetranslation{library}{Helsinki University Library}
+\providetranslation{supervisors}{Supervisor(s)}
+\providetranslation{examiner}{Examiner(s)}
+\providetranslation{appendices}{appendices}
+\providetranslation{appendice pages}{appendix pages}
+\providetranslation{pp}{pages}
+\providetranslation{flame-alt}{The University of Helsinki flame emblem in Faculty of Science color, that is to say orange}
+\providetranslation{page}{page}
+\providetranslation{pages}{pages}
+
+\providetranslation{bibname}{References}
+\providetranslation{introtitle}{Introduction}
+\providetranslation{concltitle}{Conclusions}
+\providetranslation{aiusetitle}{Use of AI in the Thesis}
